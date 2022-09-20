@@ -3,12 +3,14 @@
 // Add Custom Metabox to Select User
 function custom_metabox()
 {
-    add_meta_box(
-        'custom_metabox_01',
-        'Select User',
-        'metabox_field',
-        'task'
-    );
+    if (get_current_user_id() == 1) {
+        add_meta_box(
+            'custom_metabox_01',
+            'Select User',
+            'metabox_field',
+            'task'
+        );
+    }
 }
 
 function metabox_field()
@@ -23,14 +25,12 @@ function metabox_field()
     );
     $users = get_users($args);
 
-    if (get_current_user_id() == 1) {
-        echo '<select name="select_user">';
-        echo '<option>--- Select User ---</option>';
-        foreach ($users as $user) {
-            echo '<option value="' . $user->ID . '"' . ($assigned_user_id == $user->ID ? 'selected' : '') . '>' . $user->display_name . '</option>';
-        }
-        echo '</select>';
+    echo '<select name="select_user">';
+    echo '<option>--- Select User ---</option>';
+    foreach ($users as $user) {
+        echo '<option value="' . $user->ID . '"' . ($assigned_user_id == $user->ID ? 'selected' : '') . '>' . $user->display_name . '</option>';
     }
+    echo '</select>';
 
 //    echo '<br/>';
 //    echo 'User ID: ' . get_post_meta($post->ID, 'assigned_user_id', true);
