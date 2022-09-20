@@ -26,3 +26,6 @@ include "plugin.php";
 
 // Send email to user
 include "send-mail.php";
+
+// Change Task Status
+include "statusCheck.php";
