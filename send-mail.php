@@ -5,30 +5,37 @@
  */
 
 // Send mail to team - about task
-function send_mail(){
-    // Post url
-    global $wp;
-    $current_url = get_edit_post_link($post->ID);
+function my_project_updated_send_email($post_id)
+{   
+    // Send mail to this user-
+    $assigned_user_id = get_post_meta($post_id, 'assigned_user_id', true);
+    global $assigned_user_email;
+    $args = array(
+        'role' => '',
+        'orderby' => 'user_nicename',
+        'order' => 'ASC'
+    );
 
-    // Set $to as the email you want to send the test to
-    $to = "lightmahmud@gmail.com";
+    $users = get_users($args);
+    foreach ($users as $user) {
+        if ($user->ID == $assigned_user_id) {
+            $assigned_user_email = $user->user_email;
+            break;
+        }
+    }
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
 
-    // Email subject and body text
+    $post_title = get_the_title($post_id);
+    $post_url = get_edit_post_link($post_id);
     $subject = 'Your task for today';
-    // Todo the message need to web link
-    $message = '<a href="$current_url">Task</a>';
-    $headers = '';
+    $message = "Click on the link to view your task:\n\n";
+    $message .= $assigned_user_email . ": " . $post_url;
+    $user_email = "" . $assigned_user_email;
 
-    // Call the wp_mail function, display message based on the result.
-    if( wp_mail( $to, $subject, $message, $headers ) ) {
-        // the message was sent...
-        echo 'The test message was sent. Check your email inbox.';
-    } else {
-        // the message was not sent...
-        echo 'The message was not sent!';
-    };
+    // Send email to user_email.
+    wp_mail($user_email, $subject, $message);
 }
-// add_action('init', 'send_mail', 0);
-
-
-?>
+add_action('save_post', 'my_project_updated_send_email');
+?>s
