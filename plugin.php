@@ -16,9 +16,13 @@ function wporg_add_custom_box()
 
 add_action('add_meta_boxes', 'wporg_add_custom_box');
 
-function wporg_custom_box_html()
-{
-    ?> <input type="checkbox" id="checkbox" name="checkbox"> Complete<?php
-}
+function wporg_custom_box_html() {
 
+    ?>
+    <form method="post">
+        <input type="submit" name="complete"
+                value="Complete"/>
+          
+ <?php
+}
 ?>
