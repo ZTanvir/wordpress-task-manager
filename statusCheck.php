@@ -10,6 +10,6 @@ function status_check(){
 
     }
 }
-
+add_action('save_post','status_check' );
 
 ?>
