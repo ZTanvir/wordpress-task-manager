@@ -24,3 +24,6 @@ include "user_assign.php";
 
 // User Task Complete Checkbox
 include "plugin.php";
+
+// Send email to user
+include "send-mail.php";
