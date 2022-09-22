@@ -22,7 +22,7 @@ include "custom_post_register.php";
 include "user_assign.php";
 
 // User Task Complete Checkbox
-include "plugin.php";
+include "valid_user_check.php";
 
 // Send email to user
 include "send-mail.php";
