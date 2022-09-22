@@ -5,7 +5,7 @@ add_action('rest_api_init', "register_rest_api");
 function register_rest_api()
 {
     register_rest_route('form/v1', 'submit', array(
-        'methods' => 'POST',
+        'methods' => WP_REST_Server::CREATABLE,
         'callback' => 'my_awesome_func'
     ));
 }

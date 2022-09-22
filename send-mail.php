@@ -6,7 +6,7 @@
 
 // Send mail to team - about task
 function my_project_updated_send_email($post_id)
-{   
+{
     // Send mail to this user-
     $assigned_user_id = get_post_meta($post_id, 'assigned_user_id', true);
     global $assigned_user_email;
@@ -37,5 +37,6 @@ function my_project_updated_send_email($post_id)
     // Send email to user_email.
     wp_mail($user_email, $subject, $message);
 }
+
 add_action('save_post', 'my_project_updated_send_email');
-?>s
+?>
