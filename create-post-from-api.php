@@ -29,6 +29,21 @@ function get_data_from_api(){
         }
         echo '</ul>';
     }
+     // Gather post data.
+    $create_post = array(
+    // api title
+    'post_title'    => 'My post',
+    // api content
+    'post_content'  => 'This is my post.',
+    // 'post_status'   => 'publish',
+    // 'post_author'   => 1,
+    'post_category' => array( 8,39 ),
+    // Custom post type task
+    'post_type'     => 'Task'
+
+);
+    // Insert the post into the database.
+    wp_insert_post( $create_post );
 }
 
 add_action('wp_head', 'get_data_from_api');
