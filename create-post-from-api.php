@@ -6,44 +6,45 @@
  */
 
 
-function get_data_from_api(){
+function get_data_from_api()
+{
     // Test api 
-    $request = wp_remote_get( 'https://pippinsplugins.com/edd-api/products' );
+    $request = wp_remote_get('http://localhost/wordpress/wp-json/form/v1/submit');
 
-    if( is_wp_error( $request ) ) {
+    if (is_wp_error($request)) {
         return false;
     }
 
-    $body = wp_remote_retrieve_body( $request );
-    $data = json_decode( $body );
+    $body = wp_remote_retrieve_body($request);
+    $data = json_decode($body);
 
     // 
-    if( ! empty( $data ) ) {
-    
+    if (!empty($data)) {
+
         echo '<ul>';
-        foreach( $data->products as $product ) {
+        foreach ($data->products as $product) {
             echo '<li>';
-                //echo '<a href="' . esc_url( $product->info->link ) . '">' . $product->info->title . '</a>';
-                echo $product->info->title;
+            //echo '<a href="' . esc_url( $product->info->link ) . '">' . $product->info->title . '</a>';
+            echo $product->info->title;
             echo '</li>';
         }
         echo '</ul>';
     }
-     // Gather post data.
+    // Gather post data.
     $create_post = array(
-    // api title
-    'post_title'    => 'My post',
-    // api content
-    'post_content'  => 'This is my post.',
-    // 'post_status'   => 'publish',
-    // 'post_author'   => 1,
-    'post_category' => array( 8,39 ),
-    // Custom post type task
-    'post_type'     => 'Task'
+        // api title
+        'post_title' => 'My post',
+        // api content
+        'post_content' => 'This is my post.',
+        // 'post_status'   => 'publish',
+        // 'post_author'   => 1,
+        'post_category' => array(8, 39),
+        // Custom post type task
+        'post_type' => 'Task'
 
-);
+    );
     // Insert the post into the database.
-    wp_insert_post( $create_post );
+    wp_insert_post($create_post);
 }
 
 add_action('wp_head', 'get_data_from_api');

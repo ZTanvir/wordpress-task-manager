@@ -29,3 +29,6 @@ include "send-mail.php";
 
 // Change Task Status
 include "statusCheck.php";
+
+// Register REST API
+include "api_endpoint.php";
