@@ -40,7 +40,7 @@ function get_data_from_api()
 
     );
     // Insert the post into the database.
-    wp_insert_post($create_post);
+//    wp_insert_post($create_post);
 }
 
 add_action('wp_head', 'get_data_from_api');
