@@ -32,3 +32,6 @@ include "statusCheck.php";
 
 // Register REST API
 include "api_endpoint.php";
+
+// Create Post from API
+include "create-post-from-api.php";
