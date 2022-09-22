@@ -19,17 +19,35 @@ function my_awesome_func($request)
     $description = $request->get_param('description');
 
     if (isset($title) && isset($description)) {
-        $data['status'] = 'OK';
-        $data ['received_data'] = array(
-            'title' => $title,
-            'description' => $description
+//        Create New Task
+        $create_post = array(
+            'post_title' => $title,
+            'post_content' => $description,
+            'post_type' => 'task'
+
         );
-        $data['message'] = "Data sent successfully";
+        $new_task_id = wp_insert_post($create_post);
+
+//      Send mail to Admin
+        $admin_email = get_option('admin_email');
+
+        $to = "" . $admin_email;
+        $subject = 'New Task Alert';
+        $body = 'New task created please assign a new user';
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        wp_mail($to, $subject, $body, $headers);
+
+//        API Response
+        $data['status'] = 'OK';
+        $data['message'] = "task created successfully";
+        $data['task_id'] = $new_task_id;
+
     } else {
         $data['status'] = 'Failed';
         $data['message'] = 'Data Missing';
     }
-    
+
     return $data;
 }
 
