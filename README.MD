@@ -4,25 +4,26 @@ Admin will give task to the user by email.User will click the mail link to view 
 
 ## Table of Contents
 
-- [General info](#general-info)
-- [Technologies](#technologies)
-- [Setup](#setup)
+-   [General info](#general-info)
+-   [Technologies](#technologies)
+-   [Setup](#setup)
 
 ## General info
 
-- Plugin Name:Task Manager
-- Description:Assign task to individual
-- Contributors: Codexpert Intern(Paid :P)
-- Required WordPress version: 4.8
-- Requires PHP: 7.2
-- License: GPLv2 or later
-- License URI: https://www.gnu.org/licenses/gpl-2.0.html
+-   Plugin Name:Task Manager
+-   Description:Assign task to individual
+-   Contributors: Codexpert Intern(Paid :P)
+-   Required WordPress version: 4.8
+-   Requires PHP: 7.2
+-   License: GPLv2 or later
+-   License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Technologies
 
 Project is created with:
 
-- PHP
+-   PHP
+-   WordPress
 
 ## Setup
 
